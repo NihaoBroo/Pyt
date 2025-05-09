@@ -1,0 +1,41 @@
+name = input("Introdu numele tău: ")
+print(f"Salut, {name}! Bine ai venit!")
+
+# Definirea variabilelor cu denumiri corecte
+numar_intreg = 42
+valoare_reala = 3.14
+text_scurt = "Python"
+text_lung = """Acesta este un exemplu de text lung
+care ocupă mai multe rânduri și este utilizat pentru demonstrații
+sau exemple practice."""
+
+# Afișarea tipului de date pentru două variabile
+tip_numar_intreg = type(numar_intreg)
+tip_text_lung = type(text_lung)
+print(f"Tipul variabilei 'numar_intreg' este: {tip_numar_intreg}")
+print(f"Tipul variabilei 'text_lung' este: {tip_text_lung}")
+
+# Afișarea lungimii unei variabile text
+lungime_text_lung = len(text_lung)
+print(f"Lungimea textului salvat în 'text_lung' este: {lungime_text_lung}")
+
+# Transformarea unui text în litere mari
+text_lung_upper = text_lung.upper()
+print("Textul lung transformat în litere mari:")
+print(text_lung_upper)
+
+# Extracția unui subșir dintr-o variabilă text
+subsir = text_scurt[1:4]
+print(f"Subșirul extras din 'text_scurt' este: {subsir}")
+
+# Formatarea unui mesaj cu valorile variabilelor
+mesaj_formatat = """
+Valorile variabilelor sunt:
+ - număr întreg: {}
+ - valoare reală: {}
+ - text scurt: {}
+""".format(numar_intreg, valoare_reala, text_scurt)
+print(mesaj_formatat)
+
+# Formatarea cu f-string
+print(f"Salut, {name}! Ai introdus următoarele valori: {numar_intreg}, {valoare_reala} și '{text_scurt}'.")
