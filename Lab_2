@@ -1,0 +1,141 @@
+
+
+# 1. Listă cu valori
+my_list = [10, 20, 30, 40, 50]
+a = my_list
+my_list = [] 
+print(a)
+a.append(9)
+print(my_list)
+
+
+t = a[0:2]   # t = [10,20]
+a[0] = 8
+print(t[0])
+
+
+del my_list[0]
+print(my_list[0])
+
+# Afișăm prima și a treia valoare din listă
+print("Prima valoare din listă:", my_list[0])
+print("A treia valoare din listă:", my_list[2])
+
+# Înlocuim o valoare din listă
+my_list[1] = 99
+print("Lista după modificare:", my_list)
+
+# Extracție
+sub_list = my_list[1:4] 
+print("Sub-lista extrasa:", sub_list)
+
+# Aplicăm metode, funcții și operatori asupra listei
+my_list.append(60) 
+print("Lista după append:", my_list)
+
+my_list.insert(2, 15)  
+print("Lista după insert:", my_list)
+
+
+
+print("Lungimea listei este:", len(my_list))  
+print("Lista este ordonată:", my_list.sort() or True)  
+
+my_list_repeated = my_list * 2
+print("Lista repetată:", my_list_repeated)
+
+other_list = [10, 99, 15, 30, 40, 50, 60]
+print("Listele sunt egale?", my_list == other_list)
+
+# 2. Tuplu cu valori
+my_tuple = (100, 200, 300, 400, 500)
+
+# Tipul de date al tuplului
+print("Tipul de date al tuplului este:", type(my_tuple))
+
+# Afisam prima și ultima valoare din tuplu
+print("Prima valoare din tuplu:", my_tuple[0])
+print("Ultima valoare din tuplu:", my_tuple[-1])
+
+# Taietura din tuplu
+sub_tuple = my_tuple[1:4]  
+print("Sub-tuplu extrasa:", sub_tuple)
+
+# Aplicăm funcții asupra tuplului
+print("Tuplul conține:", len(my_tuple), "elemente.")  
+print("Tuplul este:", max(my_tuple))  
+print("Tuplul este:", min(my_tuple))  
+
+# 3. Set de elemente
+my_set = {10, 20, 20, 30, 40, 50, 50, 10}
+
+# Afișăm toate elementele setului
+print("Elementele din set:", my_set)
+
+print("Set-ul după eliminarea duplicatelor:", my_set)
+
+
+my_set.add(60)  
+print("Set-ul după add:", my_set)
+
+print("Lungimea setului este:", len(my_set))  
+
+my_dict1 = {"nume": "Ion", "vârstă": 30, "oraș": "București"}
+my_dict2 = {1: "primul", 2: "al doilea", 3: "al treilea"}
+
+print("Elemente din dicționarul cu chei de tip text:", my_dict1["nume"], my_dict1["oraș"])
+print("Elemente din dicționarul cu chei numerice:", my_dict2[1], my_dict2[3])
+
+
+
+my_dict1["ocupatie"] = "Programator"  
+print("Dicționarul cu cheia 'ocupatie' adăugată:", my_dict1)
+
+print("Numărul de chei din dicționarul 1 este:", len(my_dict1))  
+
+my_dict2.pop(2) 
+print("Dicționarul 2 după eliminarea elementului cu cheia 2:", my_dict2)
+
+
+print("Cheia 3 există în dicționarul 2?", 3 in my_dict2)
+
+# 5. Schimbarea tipului de date
+
+my_int = 10
+my_float = float(my_int)  
+print("Valoarea ca float:", my_float)
+
+# cand calcule care implică zecimale, este posibil să trebuiască să convertim un int într-un float.
+
+# 1. Crearea a două liste 
+
+produse = ["Produs A", "Produs B", "Produs C"]
+preturi = [10.5, 20.75, 30.99]
+
+
+for i in range(3):
+    informatie = "Produsul: {}, Preț: {} LEI".format(produse[i], preturi[i])
+    print(informatie)
+
+# 2. 
+
+varsta = int(input("\nIntroduceti varsta dumneavoastră: "))
+
+
+varsta_peste_5_ani = varsta + 5
+
+
+mesaj = "În 5 ani veți avea " + str(varsta_peste_5_ani) + " ani."
+print(mesaj)
+
+# 3. 
+
+cuvinte = ["ana", "are", "mere"]
+
+
+if "ana" in cuvinte:
+    print("\nCuvântul 'ana' se află în listă.")
+
+
+if "ion" not in cuvinte:
+    print("Cuvântul 'ion' nu se află în listă.")
