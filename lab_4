@@ -1,0 +1,120 @@
+
+def calcul_greutate_ideala(inaltime, varsta, sex):
+    if sex.upper() == 'M':
+        return inaltime - 100 - ((inaltime - 150) / 4 + (varsta - 20) / 4)
+    elif sex.upper() == 'F':
+        return inaltime - 100 - ((inaltime - 150) / 2.5 + (varsta - 20) / 6)
+
+
+# Înălțime
+while True:
+    inaltime_input = input("Introduceți înălțimea (cm) [150-220]: ")
+    try:
+        inaltime = int(inaltime_input)
+    except ValueError:
+        print(" Introduceți un număr valid.")
+        continue
+    if inaltime < 150 or inaltime > 220:
+        print(" Înălțimea trebuie să fie între 150 și 220 cm.")
+        continue
+    break
+
+# Greutate
+while True:
+    greutate_input = input("Introduceți greutatea dvs. (kg) [45-300]: ")
+    try:
+        greutate = float(greutate_input)
+    except ValueError:
+        print(" Introduceți un număr valid.")
+        continue
+    if greutate < 45 or greutate > 300:
+        print(" Greutatea trebuie să fie între 45 și 300 kg.")
+        continue
+    break
+
+# Vârstă
+while True:
+    varsta_input = input("Introduceți vârsta (ani) [21-119]: ")
+    try:
+        varsta = int(varsta_input)
+    except ValueError:
+        print(" Introduceți un număr valid.")
+        continue
+    if varsta < 21 or varsta > 119:
+        print(" Vârsta trebuie să fie între 21 și 119 ani.")
+        continue
+    break
+
+# Sex
+while True:
+    sex = input("Introduceți sexul (M sau F): ").strip().upper()
+    if sex not in ['M', 'F']:
+        print(" Sexul trebuie să fie M sau F.")
+        continue
+    break
+
+greutate_ideala = calcul_greutate_ideala(inaltime, varsta, sex)
+diferenta = greutate - greutate_ideala
+
+print(f"\n📏 Greutatea ideală pentru dvs. este: {greutate_ideala:.2f} kg.")
+
+if diferenta > 0:
+    print("📣 Trebuie să slăbiți {:.2f} kg.".format(diferenta))
+elif diferenta < 0:
+    print("📣 Trebuie să adăugați în greutate {:.2f} kg.".format(abs(diferenta)))
+else:
+    print("✅ Aveți greutatea ideală!")
+
+# =======================
+# SARCINA 2 – Vârsta pisicii
+# =======================
+
+# Pisici sub 1 an
+corespondenta_pui = {
+    1: "6 luni",
+    2: "10 luni",
+    3: "2 ani",
+    4: "5 ani",
+    5: "8 ani",
+    6: "14 ani",
+    7: "15 ani",
+    8: "16 ani",
+    9: "16 ani",
+    10: "17 ani",
+    11: "17 ani"
+}
+
+raspuns = input("\nPisica are mai puțin de un an? (Da/Nu): ").strip().lower()
+
+if raspuns in ['da', 'yes']:
+    while True:
+        try:
+            luni = int(input("Câte luni are pisicul? [1-11]: "))
+            if luni < 1 or luni > 11:
+                print("⚠️ Vârsta trebuie să fie între 1 și 11 luni.")
+                continue
+            break
+        except:
+            print("⚠️ Introduceți un număr întreg.")
+    print(f" Pisicul are echivalentul a {corespondenta_pui[luni]} în ani omenești.")
+else:
+    while True:
+        try:
+            ani = int(input("Câți ani are pisica dvs.? [1-35]: "))
+            if ani < 1 or ani >= 35:
+                print("⚠️ Introduceți o vârstă între 1 și 34.")
+                continue
+            break
+        except:
+            print("⚠️ Introduceți un număr întreg valid.")
+    
+    if ani == 1:
+        echiv = 18
+    elif ani == 2:
+        echiv = 25
+    elif 3 <= ani <= 15:
+        echiv = 25 + (ani - 2) * 4
+    else:
+        echiv = 25 + (13 * 4) + (ani - 15) * 3  # de la anul 16 în sus
+
+    print(f" Pisica dvs. are echivalentul a {echiv} ani umani.")
