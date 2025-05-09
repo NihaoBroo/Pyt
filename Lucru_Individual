@@ -1,0 +1,111 @@
+import pygame
+import random
+import sys
+
+# Inițializare Pygame
+pygame.init()
+
+# Setări fereastră
+lățime = 800
+înălțime = 600
+ecran = pygame.display.set_mode((lățime, înălțime))
+pygame.display.set_caption("Evită Obstacolele")
+
+# Culori
+ALB = (255, 255, 255)
+NEGRU = (0, 0, 0)
+ROSU = (255, 0, 0)
+
+# Viteză ceas
+ceas = pygame.time.Clock()
+
+# Setări joc
+player_size = 50
+player_x = lățime // 2 - player_size // 2
+player_y = înălțime - 70
+player_speed = 10
+
+obstacle_width = 50
+obstacle_height = 50
+obstacle_speed = 5
+obstacles = []
+
+# Scor
+scor = 0
+font = pygame.font.SysFont("Times New Roman", 36)
+
+# Interval minim și maxim pentru generarea obstacolelor
+interval_minim_obstacol = 200  # 0.2 secunde
+interval_maxim_obstacol = 1000  # 1 secunda
+
+# Variabila pentru momentul în care să se genereze următorul obstacol
+interval_obstacol = random.randint(interval_minim_obstacol, interval_maxim_obstacol)
+ultimul_timp_obstacol = pygame.time.get_ticks()  # Momentul când se va genera primul obstacol
+
+def afișează_scor(scor):
+    text = font.render(f"Scor: {scor}", True, ALB)
+    ecran.blit(text, (10, 10))
+
+def creează_obstacol():
+    x = random.randint(0, lățime - obstacle_width)  # Poziție aleatorie pe axa X
+    y = -obstacle_height  # Obstacolul începe de sus
+    return [x, y]
+
+# Bucla principală
+rulează = True
+while rulează:
+    # Aici folosim time.get_ticks pentru a obține timpul total trecut în milisecunde
+    timp_curent = pygame.time.get_ticks()
+    ecran.fill(NEGRU)
+    # Evenimente
+    for eveniment in pygame.event.get():
+        if eveniment.type == pygame.QUIT:
+            rulează = False
+
+    # Mișcarea jucătorului
+    taste = pygame.key.get_pressed()
+    if taste[pygame.K_LEFT] and player_x > 0:
+        player_x -= player_speed
+    if taste[pygame.K_RIGHT] and player_x < lățime - player_size:
+        player_x += player_speed
+
+    # Generare obstacole
+    if timp_curent - ultimul_timp_obstacol > interval_obstacol:
+        obstacles.append(creează_obstacol())
+        # Setăm un nou interval aleatoriu pentru următorul obstacol
+        interval_obstacol = random.randint(interval_minim_obstacol, interval_maxim_obstacol)
+        ultimul_timp_obstacol = timp_curent
+
+    # Mișcarea obstacolelor
+    for obs in obstacles[:]:
+        obs[1] += obstacle_speed  # Muta obstacolul în jos pe axa Y
+
+        if obs[1] > înălțime:
+            obstacles.remove(obs)
+            scor += 1  # crește scorul când un obstacol trece de jos
+
+        # Coliziune cu jucătorul
+        if (obs[0] < player_x + player_size and obs[0] + obstacle_width > player_x and
+            obs[1] < player_y + player_size and obs[1] + obstacle_height > player_y):
+            print("Ai fost lovit!")
+            scor = 0  # Resetează scorul la 0 dacă jucătorul este lovit
+            obstacles.clear()  # Curăță obstacolele
+            break
+
+        # Desenare obstacol
+        pygame.draw.rect(ecran, ROSU, (obs[0], obs[1], obstacle_width, obstacle_height))
+
+    # Desenare jucător
+    pygame.draw.rect(ecran, ALB, (player_x, player_y, player_size, player_size))
+
+    # Afișare scor
+    afișează_scor(scor)
+
+    # Actualizare ecran
+    pygame.display.flip()
+
+    # Setăm 60 de cadre pe secundă pentru a controla viteza jocului
+    ceas.tick(60)
+
+pygame.quit()
+sys.exit()
