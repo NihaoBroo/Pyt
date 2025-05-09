@@ -1,0 +1,47 @@
+greet_user = lambda name : print('Hello My Dear, ', name)
+user_name = input("What is your name? ")
+greet_user(user_name)
+
+def adunare (a,b):
+    return a + b
+
+
+def suma_com(lista):
+    suma = 0
+    for x in lista:
+        suma += x 
+    return suma    
+
+
+print (suma_com([1,2,3]))
+
+
+
+# 1. Sortarea unei liste de tupluri după al doilea element
+lista = [(3, 11), (1, 7), (7, 8), (16, 88), (23, 15)]
+lista_sortata = sorted(lista, key=lambda x: x[1])
+print("Lista sortată după al doilea element din tuplu:")
+print(lista_sortata)
+
+print("\n--- Exemple de funcții lambda ---")
+
+# 2.a Funcție lambda fără parametri
+salut = lambda: print("Bună ziua!")
+salut()
+
+# 2.b Funcție lambda cu parametri
+suma = lambda a, b: a + b
+print(f"Suma dintre 3 și 5 este: {suma(3, 5)}")
+
+# 2.c Funcție lambda cu parametri și valori implicite
+salut_persoana = lambda nume="elev": print(f"Salut, {nume}!")
+salut_persoana()            # fără argument => folosim "elev"
+salut_persoana("Mihai")     # cu argument => "Mihai"
+
+# 2.d Funcție lambda care returnează un rezultat
+patrat = lambda x: x ** 2
+print(f"Pătratul lui 4 este: {patrat(4)}")
+
+# 2.e Funcție lambda fără return (doar afișează)
+afiseaza_suma = lambda a, b: print(f"Suma este: {a + b}")
+afiseaza_suma(10, 7)
